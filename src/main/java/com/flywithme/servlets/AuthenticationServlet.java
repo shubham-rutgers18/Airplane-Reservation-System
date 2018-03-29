@@ -20,8 +20,8 @@ public class AuthenticationServlet extends HttpServlet {
 	private String lastName;
 	private String role;
 
-	protected void doPost(HttpServletRequest request, HttpServletResponse response)
-			throws ServletException, IOException {
+	protected void doPost(HttpServletRequest request,
+			HttpServletResponse response) throws ServletException, IOException {
 
 		String email = request.getParameter("email");
 		String password = request.getParameter("password");
@@ -29,8 +29,9 @@ public class AuthenticationServlet extends HttpServlet {
 
 		ResultSet rs;
 		try {
-			rs = AppConfig.getStatement().executeQuery("select u.first_name,u.last_name,u.password,u.role "
-					+ "from user u, customer c where u.user_id=c.user_id and u.email='" + email + "'");
+			rs = AppConfig.getStatement().executeQuery(
+					"select u.first_name,u.last_name,u.password,u.role "
+							+ "from user u where u.email='" + email + "'");
 
 			while (rs.next()) {
 				firstName = rs.getString("first_name");
@@ -56,7 +57,8 @@ public class AuthenticationServlet extends HttpServlet {
 
 			rd.forward(request, response);
 		} else {
-			request.getRequestDispatcher("login.jsp").include(request, response);
+			request.getRequestDispatcher("index.jsp")
+					.include(request, response);
 		}
 
 	}

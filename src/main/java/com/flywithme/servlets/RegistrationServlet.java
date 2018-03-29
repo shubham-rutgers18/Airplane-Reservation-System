@@ -84,7 +84,7 @@ public class RegistrationServlet extends HttpServlet {
 					"abc@gmail.com", "user1", "******");
 		}
 
-		request.getRequestDispatcher("login.jsp").include(request, response);
+		request.getRequestDispatcher("index.jsp").include(request, response);
 	}
 
 }
