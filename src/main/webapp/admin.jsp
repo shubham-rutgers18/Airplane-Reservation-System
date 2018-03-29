@@ -58,6 +58,23 @@
 			});
 		});
 	});
+
+	$(document).ready(function() {
+		$('#editCustomer').click(function() {
+			var email = $('#editemailid').val();
+			$.ajax({
+				type : 'POST',
+				data : {
+					email : email
+				},
+				url : 'editCustomerInfo',
+				success : function(result) {
+					$('#result').html(result);
+					clearAddCustFields();
+				}
+			});
+		});
+	});
 </script>
 <style>
 body {
@@ -214,14 +231,11 @@ main {
 							<div class="collapsible-body">
 								<div class="container">
 									<div class="row">
-										<form action="editCustomerInfo">
-											<div class="input-field col s12">
-												<input type="text" name="email" id="editemailid" /> <label
-													for="editemailid"><b> Email</b></label>
-											</div>
-											<button class="btn waves-effect waves-teal"
-												onclick="onEdit()">SUBMIT</button>
-										</form>
+										<div class="input-field col s12">
+											<input type="text" name="email" id="editemailid" /> <label
+												for="editemailid"><b> Email</b></label>
+										</div>
+										<button class="btn waves-effect waves-teal" id="editCustomer">SUBMIT</button>
 
 
 										<div class="container" style="display: none;" id="editdiv">
