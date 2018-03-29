@@ -1,2 +1,1 @@
-# FlyWithMe---Servlet-
-CS539 project implemented in JSP/Servlets
+FlyWithMe - A Flight Booking Service implemented using JSP and Servlets
