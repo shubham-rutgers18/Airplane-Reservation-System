@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ page session="true"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
     "http://www.w3.org/TR/html4/loose.dtd">
 <html>
@@ -42,11 +43,19 @@
 	<div class="nav-wrapper">
 		<a href="index.jsp" class="brand-logo center">FlyWithMe</a>
 		<ul id="nav-mobile" class="right hide-on-med-and-down">
-			<li><a href="logoff">Logoff</a></li>
+			<li><a href="logout" accesskey="1">Logout</a></li>
 		</ul>
 	</div>
 	</nav>
-	Welcome ${firstName} ${lastName}
+	<center>
+		<h5 class="indigo-text">
+			<%
+				out.println("Welcome " + request.getSession().getAttribute("firstName") + " "
+						+ request.getSession().getAttribute("lastName"));
+			%>
+		</h5>
+	</center>
+
 	<div class="container">
 		<!-- <h3>Tabs Demo</h3> -->
 		<div class="row">

@@ -15,7 +15,7 @@ import com.flywithme.app.AppConfig;
 
 public class AuthenticationServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-	private String password;
+	private String storedPassword;
 	private String firstName;
 	private String lastName;
 	private String role;
@@ -29,29 +29,25 @@ public class AuthenticationServlet extends HttpServlet {
 
 		ResultSet rs;
 		try {
-			rs = AppConfig.getConnectionStatement().executeQuery(
-					"select u.first_name,u.last_name,u.password,u.role from user u, customer c where u.user_id=c.user_id and u.email="
-							+ email);
+			rs = AppConfig.getStatement().executeQuery("select u.first_name,u.last_name,u.password,u.role "
+					+ "from user u, customer c where u.user_id=c.user_id and u.email='" + email + "'");
 
 			while (rs.next()) {
-				firstName = rs.getString(0);
-				lastName = rs.getString(1);
-				request.setAttribute("firstName", firstName);
-				request.setAttribute("lastName", lastName);
-				this.password = rs.getString(2);
-				role = rs.getString(3);
+				firstName = rs.getString("first_name");
+				lastName = rs.getString("last_name");
+				storedPassword = rs.getString("password");
+				role = rs.getString("role");
 			}
 
 		} catch (SQLException e1) {
 			e1.printStackTrace();
 		}
 
-		String encryptedPassword = AppConfig.passwordEncryptor().encryptPassword(password);
-
-		if (AppConfig.checkPassword(encryptedPassword, this.password)) {
+		if (AppConfig.checkPassword(password, storedPassword)) {
 			HttpSession session = request.getSession();
 			session.setAttribute("firstName", this.firstName);
 			session.setAttribute("lastName", lastName);
+			session.setAttribute("email", email);
 			if (role.equals("ADMIN")) {
 				rd = request.getRequestDispatcher("admin.jsp");
 			} else if (role.equals("USER")) {
