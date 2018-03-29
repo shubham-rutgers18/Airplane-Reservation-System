@@ -13,7 +13,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.flywithme.app.AppConfig;
-import com.flywithme.app.EmailService;
 
 public class RegistrationServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
@@ -26,12 +25,17 @@ public class RegistrationServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 
+	}
+
+	protected void doPost(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
+
 		String firstName = request.getParameter("firstName");
 		String lastName = request.getParameter("lastName");
 		String address = request.getParameter("address");
-		int zipcode = Integer.parseInt(request.getParameter("zipcode"));
-		int contactNo = Integer.parseInt(request.getParameter("contactNo"));
-		int creditCardNo = Integer.parseInt(request.getParameter("creditCardNo"));
+		long zipcode = Long.parseLong(request.getParameter("zipcode"));
+		long contactNo = Long.parseLong(request.getParameter("contactNo"));
+		long creditCardNo = Long.parseLong(request.getParameter("creditCardNo"));
 		String email = request.getParameter("email");
 		String password = request.getParameter("password");
 
@@ -63,9 +67,9 @@ public class RegistrationServlet extends HttpServlet {
 			ps.setInt(1, userId);
 			ps.setDate(2, new java.sql.Date(new Date().getTime()));
 			ps.setString(3, address);
-			ps.setInt(4, creditCardNo);
-			ps.setInt(5, zipcode);
-			ps.setInt(6, contactNo);
+			ps.setLong(4, creditCardNo);
+			ps.setLong(5, zipcode);
+			ps.setLong(6, contactNo);
 			ps.setInt(7, 0);
 			ps.setInt(8, 0);
 			ps.executeUpdate();
@@ -78,11 +82,12 @@ public class RegistrationServlet extends HttpServlet {
 			registrationSuccess = false;
 		}
 
-		if (registrationSuccess) {
-			EmailService.sendEmail(email, "Successful Registration in FlyWithMe", "Welcome " + firstName
-					+ ",\n\nCongratulations on your successful registration.\n Now enjoy the latest offers and cheapest flights on FLyWithme.",
-					"abc@gmail.com", "user1", "******");
-		}
+		/*
+		 * if (registrationSuccess) { EmailService.sendEmail(email,
+		 * "Successful Registration in FlyWithMe", "Welcome " + firstName +
+		 * ",\n\nCongratulations on your successful registration.\n Now enjoy the latest offers and cheapest flights on FLyWithme."
+		 * , "abc@gmail.com", "user1", "******"); }
+		 */
 
 		request.getRequestDispatcher("index.jsp").include(request, response);
 	}

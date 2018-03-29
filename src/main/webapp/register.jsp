@@ -34,7 +34,7 @@
 		<hr>
 		<div style="margin-top: 30px"></div>
 		<div class="row">
-			<form class="col s12" action="register">
+			<form class="col s12" action="register" method="post">
 				<div class="row">
 					<div class="input-field col s6">
 						<input id="firstName" type="text" class="validate"

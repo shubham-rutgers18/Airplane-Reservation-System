@@ -12,12 +12,52 @@
 <link rel="stylesheet"
 	href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.3/css/materialize.min.css">
 <script type="text/javascript"
-	src="https://code.jquery.com/jquery-2.1.1.min.js">
-	
-</script>
-<script
-	src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.3/js/materialize.min.js">
-	
+	src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+<script type="text/javascript"
+	src=" https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.3/js/materialize.min.js"></script>
+
+<script type="text/javascript">
+	function clearAddCustFields() {
+		$('#firstName').val("");
+		$('#lastName').val("");
+		$('#address').val("");
+		$('#zipcode').val("");
+		$('#contactNo').val("");
+		$('#creditCardNo').val("");
+		$('#email').val("");
+		$('#password').val("");
+	}
+
+	$(document).ready(function() {
+		$('#addUser').click(function() {
+			var firstName = $('#firstName').val();
+			var lastName = $('#lastName').val();
+			var address = $('#address').val();
+			var zipcode = $('#zipcode').val();
+			var contactNo = $('#contactNo').val();
+			var creditCardNo = $('#creditCardNo').val();
+			var email = $('#email').val();
+			var password = $('#password').val();
+			$.ajax({
+				type : 'POST',
+				data : {
+					firstName : firstName,
+					lastName : lastName,
+					address : address,
+					zipcode : zipcode,
+					contactNo : contactNo,
+					creditCardNo : creditCardNo,
+					email : email,
+					password : password
+				},
+				url : 'addCustomer',
+				success : function(result) {
+					$('#result').html(result);
+					clearAddCustFields();
+				}
+			});
+		});
+	});
 </script>
 <style>
 body {
@@ -71,38 +111,20 @@ main {
 #m25 {
 	display: none;
 }
-
-#addclick {
-	display: none;
-}
-
-#editclick {
-	display: none;
-}
-
-#deleteclick {
-	display: none;
-}
-
-#reservation {
-	display: none;
-}
-
-#best {
-	display: none;
-}
 </style>
 
 </head>
 
 <body>
-
+	<%
+		request.setAttribute("fromPage", "admin.jsp");
+	%>
 	<nav>
 	<div class="nav-wrapper">
 		<a href="index.jsp" class="brand-logo center">FlyWithMe-System
 			Manager</a>
 		<ul id="nav-mobile" class="right hide-on-med-and-down">
-			<li><a href="logoff">Logoff</a></li>
+			<li><a href="logout" accesskey="1">Logout</a></li>
 		</ul>
 	</div>
 	</nav>
@@ -130,63 +152,59 @@ main {
 							<div class="collapsible-body">
 								<div class="container">
 									<div class="row">
-										<form class="col s12" action="addCustomer">
-											<div class="row">
-												<div class="input-field col s6">
-													<input id="firstName" type="text" class="validate" /> <label
-														for="firstName">First Name</label>
-												</div>
-												<div class="input-field col s6">
-													<input id="lastName" type="text" class="validate"
-														path="lastName" /> <label for="lastName">Last
-														Name</label>
-												</div>
+										<div class="row">
+											<div class="input-field col s6">
+												<input id="firstName" type="text" class="validate" /> <label
+													for="firstName">First Name</label>
 											</div>
-											<div class="row">
-												<div class="input-field col s12">
-													<textarea id="address" class="materialize-textarea"></textarea>
-													<label for="address">Address</label>
-												</div>
+											<div class="input-field col s6">
+												<input id="lastName" type="text" class="validate" /> <label
+													for="lastName">Last Name</label>
 											</div>
-											<div class="row">
-												<div class="input-field col s12">
-													<input type="Number" placeholder="Zipcode" name="Zipcode"
-														id="Zipcode" /> <label for="Zipcode"><b>
-															Zipcode </b></label>
+										</div>
+										<div class="row">
+											<div class="input-field col s12">
+												<textarea id="address" class="materialize-textarea"></textarea>
+												<label for="address">Address</label>
+											</div>
+										</div>
+										<div class="row">
+											<div class="input-field col s12">
+												<input type="number" name="zipcode" id="zipcode" /> <label
+													for="zipcode"><b> Zipcode </b></label>
 
-												</div>
 											</div>
-											<div class="row">
-												<div class="input-field col s12">
-													<input type="number" placeholder="Contact_No"
-														name="Contact_No" id="Contact_No" /> <label
-														for="Contact_No"><b> Contact_No </b></label>
-												</div>
+										</div>
+										<div class="row">
+											<div class="input-field col s12">
+												<input type="number" name="contactNo" id="contactNo" /> <label
+													for="contactNo"><b> Contact_No </b></label>
 											</div>
-											<div class="row">
-												<div class="input-field col s12">
-													<input type="Number" placeholder="CreditCard_No"
-														name="CreditCard_No" id="CreditCard_No" /> <label
-														for="CreditCard_No"><b> CreditCard_No </b><label>
-												</div>
+										</div>
+										<div class="row">
+											<div class="input-field col s12">
+												<input type="number" name="creditCardNo" id="creditCardNo" />
+												<label for="creditCardNo"><b> CreditCard_No </b><label>
 											</div>
+										</div>
 
-											<div class="row">
-												<div class="input-field col s12">
-													<input type="text" placeholder="Enter Email" name="email"
-														id="email" /> <label for="email"><b>Email</b></label>
-												</div>
+										<div class="row">
+											<div class="input-field col s12">
+												<input type="text" name="email" id="email" /> <label
+													for="email"><b>Email</b></label>
 											</div>
+										</div>
 
-											<div class="row">
-												<div class="input-field col s12">
-													<input type="password" placeholder="Enter Password"
-														name="psw" id="psw" /> <label for="psw"><b>Password</b></label>
-												</div>
+										<div class="row">
+											<div class="input-field col s12">
+												<input type="password" name="password" id="password" /> <label
+													for="password"><b>Password</b></label>
 											</div>
+										</div>
 
-											<button class="btn waves-effect waves-teal">Add</button>
-										</form>
+										<button class="btn waves-effect waves-teal" id="addUser">Add</button>
+										<div id="result"></div>
+
 									</div>
 								</div>
 							</div>
@@ -198,9 +216,8 @@ main {
 									<div class="row">
 										<form action="editCustomerInfo">
 											<div class="input-field col s12">
-												<input type="text" placeholder="ENTER EMAIL" name="email"
-													id="editemailid" /> <label for="editemailid"><b>
-														Email</b></label>
+												<input type="text" name="email" id="editemailid" /> <label
+													for="editemailid"><b> Email</b></label>
 											</div>
 											<button class="btn waves-effect waves-teal"
 												onclick="onEdit()">SUBMIT</button>
@@ -211,60 +228,56 @@ main {
 											<form class="col s12">
 												<div class="row">
 													<div class="input-field col s6">
-														<input id="firstName" type="text" class="validate" /> <label
+														<input id="firstName1" type="text" class="validate" /> <label
 															for="firstName">First Name</label>
 													</div>
 													<div class="input-field col s6">
-														<input id="lastName" type="text" class="validate" /> <label
+														<input id="lastName1" type="text" class="validate" /> <label
 															for="lastName">Last Name</label>
 													</div>
 												</div>
 												<div class="row">
 													<div class="input-field col s12">
-														<textarea id="address" class="materialize-textarea"></textarea>
+														<textarea id="address1" class="materialize-textarea"></textarea>
 														<label for="address">Address</label>
 													</div>
 												</div>
 												<div class="row">
 													<div class="input-field col s12">
-														<input type="Number" name="Zipcode" id="Zipcode" /> <label
-															for="Zipcode"><b> Zipcode </b></label>
+														<input type="number" name="zipcode" id="zipcode" /> <label
+															for="zipcode"><b> Zipcode </b></label>
 
 													</div>
 												</div>
 												<div class="row">
 													<div class="input-field col s12">
-
-														<input type="number" placeholder="Contact_No"
-															name="Contact_No" id="Contact_No" /> <label
-															for="Contact_No"><b> Contact_No </b></label>
+														<input type="number" name="contactNo" id="contactNo1" />
+														<label for="contactNo"><b> Contact_No </b></label>
 													</div>
 												</div>
 												<div class="row">
 													<div class="input-field col s12">
-
-														<input type="Number" placeholder="CreditCard_No"
-															name="CreditCard_No" id="CreditCard_No" /> <label
-															for="CreditCard_No"><b> CreditCard_No </b></label>
+														<input type="number" name="creditCardNo"
+															id="creditCardNo1" /> <label for="creditCardNo"><b>
+																CreditCard_No </b><label>
 													</div>
 												</div>
 
 												<div class="row">
 													<div class="input-field col s12">
-
-														<input type="text" placeholder="Enter Email" name="email"
-															id="email" /> <label for="email"><b>Email</b></label>
+														<input type="text" name="email" id="email1" /> <label
+															for="email"><b>Email</b></label>
 													</div>
 												</div>
 
 												<div class="row">
 													<div class="input-field col s12">
-														<input type="password" placeholder="Enter Password"
-															name="psw" id="psw" /> <label for="psw"><b>Password</b></label>
+														<input type="password" name="password" id="password1" />
+														<label for="password"><b>Password</b></label>
 													</div>
 												</div>
-
-												<button class="btn waves-effect waves-teal">Add</button>
+												<button class="btn waves-effect waves-teal">Edit &
+													Save</button>
 											</form>
 										</div>
 									</div>
@@ -279,9 +292,8 @@ main {
 									<div class="row">
 										<form action="deleteCustomer">
 											<div class="input-field col s12">
-												<input type="text" placeholder="ENTER EMAIL" name="email"
-													id="deleteEmailid" /> <label for="deleteEmailid"><b>
-														Email</b></label>
+												<input type="text" name="email" id="deleteEmailid" /> <label
+													for="deleteEmailid"><b> Email</b></label>
 											</div>
 											<button class="btn waves-effect waves-teal"
 												onclick="deletebutton()">SUBMIT</button>
@@ -300,8 +312,8 @@ main {
 									<div class="row">
 										<form action="checkReservation">
 											<div class="input-field col s12">
-												<input type="text" placeholder="ENTER EMAIL" name="email"
-													id="emailid" /> <label for="emailid"><b> Email</b></label>
+												<input type="text" name="email" id="emailid" /> <label
+													for="emailid"><b> Email</b></label>
 											</div>
 											<button class="btn waves-effect waves-teal">SUBMIT</button>
 										</form>
