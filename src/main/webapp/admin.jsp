@@ -60,17 +60,17 @@
 	});
 
 	$(document).ready(function() {
-		$('#editCustomer').click(function() {
-			var email = $('#editemailid').val();
+		$('#revenueCust').click(function() {
+			var email = $('#revenueEmail').val();
 			$.ajax({
 				type : 'POST',
 				data : {
 					email : email
 				},
-				url : 'editCustomerInfo',
+				url : 'revenue',
 				success : function(result) {
-					$('#result').html(result);
-					clearAddCustFields();
+					$('#revenueResult').html(result);
+					$('#revenueEmail').val("");
 				}
 			});
 		});
@@ -521,13 +521,13 @@ main {
 							<div class="collapsible-body">
 								<div class="container">
 									<div class="row">
-										<form>
-											<div class="input-field col s12">
-												<input type="text" placeholder="ENTER EMAIL" name="email"
-													id="emailid" /> <label for="emailid"><b> Email</b></label>
-											</div>
-											<button class="btn waves-effect waves-teal">SUBMIT</button>
-										</form>
+										<div class="input-field col s12">
+											<input type="text" name="email" id="revenueEmail" /> <label
+												for="emailid"><b> Email</b></label>
+										</div>
+										<button class="btn waves-effect waves-teal" id="revenueCust">GET
+											REVENUE</button>
+										<div id="revenueResult" />
 									</div>
 
 								</div>
