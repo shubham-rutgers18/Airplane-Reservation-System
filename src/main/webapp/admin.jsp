@@ -1,3 +1,4 @@
+<%@page import="java.util.Enumeration"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ page session="true"%>
@@ -12,7 +13,7 @@
 <link rel="stylesheet"
 	href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.3/css/materialize.min.css">
 <script type="text/javascript"
-	src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+	src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 <script type="text/javascript"
 	src=" https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.3/js/materialize.min.js"></script>
 
@@ -35,6 +36,15 @@
 		$('#zipcode1').val("");
 		$('#contactNo1').val("");
 		$('#creditCardNo1').val("");
+	}
+	
+	function setEditForm(fn, ln, add, zip, cno, cred) {
+		$('#firstName1').val(fn);
+		$('#lastName1').val(ln);
+		$('#address1').val(add);
+		$('#zipcode1').val(zip);
+		$('#contactNo1').val(cno);
+		$('#creditCardNo1').val(cred);
 	}
 
 	$(document).ready(function() {
@@ -66,9 +76,7 @@
 				}
 			});
 		});
-	});
-
-	$(document).ready(function() {
+		
 		$('#editButton').click(function() {
 			var editemailid = $('#editemailid').val();
 			$.ajax({
@@ -78,43 +86,20 @@
 				},
 				url : 'editCustomer',
 				success : function(result) {
-					var fname="<%=request.getSession().getAttribute("fName")%>";
-					console.log("<%=request.getSession().getAttribute("fName")%>");
-					console.log("<%=request.getSession().getAttribute("firstName")%>");
-					var lname = "<%=request.getSession().getAttribute("lName")%>";
-					var add = "<%=request.getSession().getAttribute("address")%>";
-					var zip = Number("<%=request.getSession().getAttribute("zipcode")%>");
-					var cno = Number("<%=request.getSession().getAttribute("contactNo")%>");
-					var cred = Number("<%=request.getSession().getAttribute("creditCardNo")%>");
+					var fname="<%=session.getAttribute("fName")%>";
+					console.log("<%=session.getAttribute("fName")%>")
+					console.log("<%=session.getAttribute("lName")%>");
+					var lname = "<%=session.getAttribute("lName")%>";
+					var add = "<%=session.getAttribute("address")%>";
+					var zip = Number("<%=session.getAttribute("zipcode")%>");
+					var cno = Number("<%=session.getAttribute("contactNo")%>");
+					var cred = Number("<%=session.getAttribute("creditCardNo")%>");
 					setEditForm(fname,lname, add,zip, cno,cred);
-					}
-			});
-	});
-
-	function setEditForm(fn, ln, add, zip, cno, cred) {
-		$('#firstName1').val(fn);
-		$('#lastName1').val(ln);
-		$('#address1').val(add);
-		$('#zipcode1').val(zip);
-		$('#contactNo1').val(cno);
-		$('#creditCardNo1').val(cred);
-	}
-	
-	$(document).ready(function() {
-		$('#deleteButton').click(function() {
-			var editemailid = $('#deleteEmailid').val();
-			$.ajax({
-				type : 'POST',
-				data : {
-					deleteEmailid : deleteEmailid
-				},
-				url : 'deleteCustomer',
-				success : function(result) {
-					$('#deleteResult').html(result);
-					$('#deleteEmailid').val('');
 				}
 			});
+		});
 	});
+
 </script>
 <style>
 body {
@@ -338,12 +323,13 @@ main {
 							<div class="collapsible-body">
 								<div class="container">
 									<div class="row">
+									<form id="deleteForm" action="deleteCustomer" method="post">
 										<div class="input-field col s12">
-											<input type="text" name="email" id="deleteEmailid" /> <label
+											<input type="text" name="deleteEmailid" id="deleteEmailid" /> <label
 												for="deleteEmailid"><b> Email</b></label>
 										</div>
 										<button class="btn waves-effect waves-teal" id="deleteButton">SUBMIT</button>
-										<div id="deleteResult"></div>
+									</form>
 									</div>
 
 								</div>
@@ -358,10 +344,10 @@ main {
 									<div class="row">
 										<form action="checkReservation">
 											<div class="input-field col s12">
-												<input type="text" name="email" id="reserveEmail" /> <label
-													for="emailid"><b> Email</b></label>
+												<input type="text" name="reserveEmail" id="reserveEmail" /> <label>
+													for="reserveEmail"><b> Email</b></label>
 											</div>
-											<button class="btn waves-effect waves-teal">SUBMIT</button>
+											<button class="btn waves-effect waves-teal" onclick="Materialize.toast('I am a toast', 4000)">SUBMIT</button>
 										</form>
 									</div>
 
@@ -372,10 +358,8 @@ main {
 						<li>
 							<div class="collapsible-header">BEST CUSTOMER</div>
 							<div class="collapsible-body">
-								<form action="getBestCustomer">
 									<button class="btn waves-effect waves-teal"
-										onclick="bestCustomer()">SUBMIT</button>
-								</form>
+										id="bestCustomer">SUBMIT</button>
 							</div>
 						</li>
 					</ul>

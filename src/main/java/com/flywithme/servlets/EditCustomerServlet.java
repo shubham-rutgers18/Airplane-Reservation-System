@@ -46,7 +46,7 @@ public class EditCustomerServlet extends HttpServlet {
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
-		response.sendRedirect(request.getContextPath() + "/admin.jsp");
+		request.getRequestDispatcher("admin.jsp").forward(request, response);
 	}
 
 }
