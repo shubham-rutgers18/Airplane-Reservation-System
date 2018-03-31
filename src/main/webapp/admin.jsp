@@ -88,7 +88,6 @@
 					var cred = Number("<%=request.getSession().getAttribute("creditCardNo")%>");
 					setEditForm(fname,lname, add,zip, cno,cred);
 					}
-				});
 			});
 	});
 
@@ -100,6 +99,22 @@
 		$('#contactNo1').val(cno);
 		$('#creditCardNo1').val(cred);
 	}
+	
+	$(document).ready(function() {
+		$('#deleteButton').click(function() {
+			var editemailid = $('#deleteEmailid').val();
+			$.ajax({
+				type : 'POST',
+				data : {
+					deleteEmailid : deleteEmailid
+				},
+				url : 'deleteCustomer',
+				success : function(result) {
+					$('#deleteResult').html(result);
+					$('#deleteEmailid').val('');
+				}
+			});
+	});
 </script>
 <style>
 body {
@@ -307,7 +322,7 @@ main {
 																CreditCard Number </b></label>
 													</div>
 												</div>
-											
+
 												<button class="btn waves-effect waves-teal" type="submit">Edit
 													& Save</button>
 											</form>
@@ -323,14 +338,12 @@ main {
 							<div class="collapsible-body">
 								<div class="container">
 									<div class="row">
-										<form action="deleteCustomer">
-											<div class="input-field col s12">
-												<input type="text" name="email" id="deleteEmailid" /> <label
-													for="deleteEmailid"><b> Email</b></label>
-											</div>
-											<button class="btn waves-effect waves-teal"
-												onclick="deletebutton()">SUBMIT</button>
-										</form>
+										<div class="input-field col s12">
+											<input type="text" name="email" id="deleteEmailid" /> <label
+												for="deleteEmailid"><b> Email</b></label>
+										</div>
+										<button class="btn waves-effect waves-teal" id="deleteButton">SUBMIT</button>
+										<div id="deleteResult"></div>
 									</div>
 
 								</div>
