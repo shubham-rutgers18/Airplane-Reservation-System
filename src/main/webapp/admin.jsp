@@ -95,11 +95,11 @@
 					var cno = Number("<%=session.getAttribute("contactNo")%>");
 					var cred = Number("<%=session.getAttribute("creditCardNo")%>");
 					setEditForm(fname,lname, add,zip, cno,cred);
-				}
+					}
+				});
 			});
 		});
-	});
-
+	
 </script>
 <style>
 body {
@@ -323,13 +323,13 @@ main {
 							<div class="collapsible-body">
 								<div class="container">
 									<div class="row">
-									<form id="deleteForm" action="deleteCustomer" method="post">
-										<div class="input-field col s12">
-											<input type="text" name="deleteEmailid" id="deleteEmailid" /> <label
-												for="deleteEmailid"><b> Email</b></label>
-										</div>
-										<button class="btn waves-effect waves-teal" id="deleteButton">SUBMIT</button>
-									</form>
+										<form id="deleteForm" action="deleteCustomer" method="post">
+											<div class="input-field col s12">
+												<input type="text" name="deleteEmailid" id="deleteEmailid" />
+												<label for="deleteEmailid"><b> Email</b></label>
+											</div>
+											<button class="btn waves-effect waves-teal" id="deleteButton">SUBMIT</button>
+										</form>
 									</div>
 
 								</div>
@@ -344,10 +344,11 @@ main {
 									<div class="row">
 										<form action="checkReservation">
 											<div class="input-field col s12">
-												<input type="text" name="reserveEmail" id="reserveEmail" /> <label>
-													for="reserveEmail"><b> Email</b></label>
+												<input type="text" name="reserveEmail" id="reserveEmail" />
+												<label for="reserveEmail"><b> Email</b></label>
 											</div>
-											<button class="btn waves-effect waves-teal" onclick="Materialize.toast('I am a toast', 4000)">SUBMIT</button>
+											<button class="btn waves-effect waves-teal"
+												onclick="Materialize.toast('I am a toast', 4000)">SUBMIT</button>
 										</form>
 									</div>
 
@@ -358,8 +359,9 @@ main {
 						<li>
 							<div class="collapsible-header">BEST CUSTOMER</div>
 							<div class="collapsible-body">
-									<button class="btn waves-effect waves-teal"
-										id="bestCustomer">SUBMIT</button>
+							<form id="bestCustomerForm" action="getBestCustomer" method="post">
+									<button class="btn waves-effect waves-teal" id="bestCustomer" type="submit">SUBMIT</button>
+							</form>
 							</div>
 						</li>
 					</ul>
@@ -535,12 +537,12 @@ main {
 							<div class="collapsible-body">
 								<div class="container">
 									<div class="row">
-										<form>
+										<form method="post" action="revenueByCustomer">
 											<div class="input-field col s12">
-												<input type="text" placeholder="ENTER EMAIL" name="email"
-													id="emailid" /> <label for="emailid"><b> Email</b></label>
+												<input type="text" placeholder="ENTER EMAIL" name="revenueCustId"
+													id="revenueCustId" /> <label for="revenueCustId"><b> Email</b></label>
 											</div>
-											<button class="btn waves-effect waves-teal">SUBMIT</button>
+											<button class="btn waves-effect waves-teal" type="submit">SUBMIT</button>
 										</form>
 									</div>
 

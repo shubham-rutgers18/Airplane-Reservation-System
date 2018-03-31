@@ -70,6 +70,24 @@
 		<description></description>
 		<servlet-class>com.flywithme.servlets.EditSaveServlet</servlet-class>
 	</servlet>
+	<servlet>
+		<servlet-name>ReservationByUIDServlet</servlet-name>
+		<display-name>ReservationByUIDServlet</display-name>
+		<description></description>
+		<servlet-class>com.flywithme.servlets.ReservationByUIDServlet</servlet-class>
+	</servlet>
+	<servlet>
+		<servlet-name>RevenueByCustomerServlet</servlet-name>
+		<display-name>RevenueByCustomerServlet</display-name>
+		<description></description>
+		<servlet-class>com.flywithme.servlets.RevenueByCustomerServlet</servlet-class>
+	</servlet>
+	<servlet>
+		<servlet-name>RevenueByFlightServlet</servlet-name>
+		<display-name>RevenueByFlightServlet</display-name>
+		<description></description>
+		<servlet-class>com.flywithme.servlets.RevenueByFlightServlet</servlet-class>
+	</servlet>
 	<servlet-mapping>
 		<servlet-name>AuthenticationServlet</servlet-name>
 		<url-pattern>/getAuth</url-pattern>
@@ -113,5 +131,17 @@
 	<servlet-mapping>
 		<servlet-name>EditSaveServlet</servlet-name>
 		<url-pattern>/saveEdit</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>ReservationByUIDServlet</servlet-name>
+		<url-pattern>/reservationByUID</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>RevenueByCustomerServlet</servlet-name>
+		<url-pattern>/revenueByCustomer</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>RevenueByFlightServlet</servlet-name>
+		<url-pattern>/revenueByFlight</url-pattern>
 	</servlet-mapping>
 </web-app>
