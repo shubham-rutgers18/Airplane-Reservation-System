@@ -44,12 +44,10 @@ public class DeleteCustomerServlet extends HttpServlet {
 			ps.setInt(1, userId);
 			ps.executeUpdate();
 
-			PrintWriter out = response.getWriter();
-			out.println("Details of User " + firstName + " deleted");
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
-
+		response.sendRedirect(request.getContextPath() + "/admin.jsp");
 	}
 
 }
