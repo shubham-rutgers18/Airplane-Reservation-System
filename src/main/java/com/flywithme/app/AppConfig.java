@@ -16,10 +16,13 @@ public class AppConfig {
 
 	private static Statement st = null;
 	private static java.sql.PreparedStatement ps = null;
+	private static Connection con = null;
 
 	public static Connection getConnection() {
 
-		Connection con = null;
+		if (con != null) {
+			return con;
+		}
 
 		try {
 			Class.forName("com.mysql.jdbc.Driver");

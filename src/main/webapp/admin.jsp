@@ -27,6 +27,15 @@
 		$('#email').val("");
 		$('#password').val("");
 	}
+	
+	function clearAddCust1Fields() {
+		$('#firstName1').val("");
+		$('#lastName1').val("");
+		$('#address1').val("");
+		$('#zipcode1').val("");
+		$('#contactNo1').val("");
+		$('#creditCardNo1').val("");
+	}
 
 	$(document).ready(function() {
 		$('#addUser').click(function() {
@@ -60,21 +69,37 @@
 	});
 
 	$(document).ready(function() {
-		$('#revenueCust').click(function() {
-			var email = $('#revenueEmail').val();
+		$('#editButton').click(function() {
+			var editemailid = $('#editemailid').val();
 			$.ajax({
 				type : 'POST',
 				data : {
-					email : email
+					editemailid : editemailid
 				},
-				url : 'revenue',
+				url : 'editCustomer',
 				success : function(result) {
-					$('#revenueResult').html(result);
-					$('#revenueEmail').val("");
-				}
+					var fname="<%=request.getSession().getAttribute("fName")%>";
+					console.log("<%=request.getSession().getAttribute("fName")%>");
+					console.log("<%=request.getSession().getAttribute("firstName")%>");
+					var lname = "<%=request.getSession().getAttribute("lName")%>";
+					var add = "<%=request.getSession().getAttribute("address")%>";
+					var zip = Number("<%=request.getSession().getAttribute("zipcode")%>");
+					var cno = Number("<%=request.getSession().getAttribute("contactNo")%>");
+					var cred = Number("<%=request.getSession().getAttribute("creditCardNo")%>");
+					setEditForm(fname,lname, add,zip, cno,cred);
+					}
+				});
 			});
-		});
 	});
+
+	function setEditForm(fn, ln, add, zip, cno, cred) {
+		$('#firstName1').val(fn);
+		$('#lastName1').val(ln);
+		$('#address1').val(add);
+		$('#zipcode1').val(zip);
+		$('#contactNo1').val(cno);
+		$('#creditCardNo1').val(cred);
+	}
 </script>
 <style>
 body {
@@ -147,7 +172,7 @@ main {
 	</nav>
 
 	<div class="container">
-		<!-- <h3>Tabs Demo</h3> -->
+
 		<div class="row">
 			<div class="col s12">
 				<ul class="tabs">
@@ -155,7 +180,6 @@ main {
 					<li class="tab col s4"><a class="active" href="#m2">
 							Flight Details</a></li>
 					<li class="tab col s4 "><a href="#m3"> Sales Summary</a></li>
-
 				</ul>
 			</div>
 
@@ -195,13 +219,14 @@ main {
 										<div class="row">
 											<div class="input-field col s12">
 												<input type="number" name="contactNo" id="contactNo" /> <label
-													for="contactNo"><b> Contact_No </b></label>
+													for="contactNo"><b> Contact Number </b></label>
 											</div>
 										</div>
 										<div class="row">
 											<div class="input-field col s12">
 												<input type="number" name="creditCardNo" id="creditCardNo" />
-												<label for="creditCardNo"><b> CreditCard_No </b><label>
+												<label for="creditCardNo"><b> CreditCard Number
+												</b><label>
 											</div>
 										</div>
 
@@ -231,68 +256,62 @@ main {
 							<div class="collapsible-body">
 								<div class="container">
 									<div class="row">
+
 										<div class="input-field col s12">
-											<input type="text" name="email" id="editemailid" /> <label
+											<input type="text" name="editemailid" id="editemailid" /> <label
 												for="editemailid"><b> Email</b></label>
 										</div>
-										<button class="btn waves-effect waves-teal" id="editCustomer">SUBMIT</button>
+										<button class="btn waves-effect waves-teal" id="editButton">SUBMIT</button>
 
-
-										<div class="container" style="display: none;" id="editdiv">
-											<form class="col s12">
+										<br> <br>
+										<div class="container">
+											<form class="col s12" action="saveEdit" method="post"
+												id="editForm">
 												<div class="row">
+
 													<div class="input-field col s6">
-														<input id="firstName1" type="text" class="validate" /> <label
-															for="firstName">First Name</label>
+														<input id="firstName1" name="firstName1" type="text"
+															class="validate" /> <label for="firstName1">First
+															Name</label>
 													</div>
 													<div class="input-field col s6">
-														<input id="lastName1" type="text" class="validate" /> <label
-															for="lastName">Last Name</label>
+														<input id="lastName1" name="lastName1" type="text"
+															class="validate" /> <label for="lastName1">Last
+															Name</label>
 													</div>
 												</div>
 												<div class="row">
 													<div class="input-field col s12">
-														<textarea id="address1" class="materialize-textarea"></textarea>
-														<label for="address">Address</label>
+														<textarea id="address1" name="address1"
+															class="materialize-textarea"></textarea>
+														<label for="address1">Address</label>
 													</div>
 												</div>
 												<div class="row">
 													<div class="input-field col s12">
-														<input type="number" name="zipcode" id="zipcode" /> <label
-															for="zipcode"><b> Zipcode </b></label>
+														<input type="number" name="zipcode1" id="zipcode1" /> <label
+															for="zipcode1"><b> Zipcode </b></label>
 
 													</div>
 												</div>
 												<div class="row">
 													<div class="input-field col s12">
-														<input type="number" name="contactNo" id="contactNo1" />
-														<label for="contactNo"><b> Contact_No </b></label>
+														<input type="number" name="contactNo1" id="contactNo1" />
+														<label for="contactNo1"><b> Contact Number </b></label>
 													</div>
 												</div>
 												<div class="row">
 													<div class="input-field col s12">
-														<input type="number" name="creditCardNo"
-															id="creditCardNo1" /> <label for="creditCardNo"><b>
-																CreditCard_No </b><label>
+														<input type="number" name="creditCardNo1"
+															id="creditCardNo1" /> <label for="creditCardNo1"><b>
+																CreditCard Number </b></label>
 													</div>
 												</div>
-
-												<div class="row">
-													<div class="input-field col s12">
-														<input type="text" name="email" id="email1" /> <label
-															for="email"><b>Email</b></label>
-													</div>
-												</div>
-
-												<div class="row">
-													<div class="input-field col s12">
-														<input type="password" name="password" id="password1" />
-														<label for="password"><b>Password</b></label>
-													</div>
-												</div>
-												<button class="btn waves-effect waves-teal">Edit &
-													Save</button>
+											
+												<button class="btn waves-effect waves-teal" type="submit">Edit
+													& Save</button>
 											</form>
+											<div id="editResult"></div>
 										</div>
 									</div>
 
@@ -326,7 +345,7 @@ main {
 									<div class="row">
 										<form action="checkReservation">
 											<div class="input-field col s12">
-												<input type="text" name="email" id="emailid" /> <label
+												<input type="text" name="email" id="reserveEmail" /> <label
 													for="emailid"><b> Email</b></label>
 											</div>
 											<button class="btn waves-effect waves-teal">SUBMIT</button>
@@ -346,8 +365,6 @@ main {
 								</form>
 							</div>
 						</li>
-
-
 					</ul>
 			</div>
 			<div id="m2" class="col s12">
@@ -371,8 +388,8 @@ main {
 										<form action="listCustomers">
 											<div class="input-field col s12">
 												<input type="number" placeholder="ENTER flight id"
-													name="flightid" id="flightid" /> <label for="flightid"><b>
-														flight id</b></label>
+													name="custflightid" id="custflightid" /> <label
+													for="custflightid"><b> flight id</b></label>
 											</div>
 											<button class="btn waves-effect waves-teal">SUBMIT</button>
 										</form>
@@ -425,8 +442,8 @@ main {
 										<form>
 											<div class="input-field col s12">
 												<input type="number" placeholder="ENTER flight id"
-													name="flightid" id="flightid" /> <label for="flightid"><b>
-														Flight id</b></label>
+													name="reservelistFlight" id="reservelistFlight" /> <label
+													for="reservelistFlight"><b> Flight id</b></label>
 											</div>
 
 											<button class="btn waves-effect waves-teal">SUBMIT</button>
@@ -482,8 +499,8 @@ main {
 										<form>
 											<div class="input-field col s12">
 												<input type="number" placeholder="ENTER flight id"
-													name="flightid" id="flightid" /> <label for="flightid"><b>
-														Flight id</b></label>
+													name="revenueByFlightId" id="revenueByFlightId" /> <label
+													for="revenueByFlightId"><b> Flight id</b></label>
 											</div>
 
 											<button class="btn waves-effect waves-teal">SUBMIT</button>
@@ -521,13 +538,13 @@ main {
 							<div class="collapsible-body">
 								<div class="container">
 									<div class="row">
-										<div class="input-field col s12">
-											<input type="text" name="email" id="revenueEmail" /> <label
-												for="emailid"><b> Email</b></label>
-										</div>
-										<button class="btn waves-effect waves-teal" id="revenueCust">GET
-											REVENUE</button>
-										<div id="revenueResult" />
+										<form>
+											<div class="input-field col s12">
+												<input type="text" placeholder="ENTER EMAIL" name="email"
+													id="emailid" /> <label for="emailid"><b> Email</b></label>
+											</div>
+											<button class="btn waves-effect waves-teal">SUBMIT</button>
+										</form>
 									</div>
 
 								</div>
@@ -537,6 +554,7 @@ main {
 					</ul>
 			</div>
 		</div>
+	</div>
 </body>
 
 </html>

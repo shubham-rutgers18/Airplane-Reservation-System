@@ -65,10 +65,10 @@
 		<servlet-class>com.flywithme.servlets.SearchResultsServlet</servlet-class>
 	</servlet>
 	<servlet>
-		<servlet-name>RevenueByCustomerServlet</servlet-name>
-		<display-name>RevenueByCustomerServlet</display-name>
+		<servlet-name>EditSaveServlet</servlet-name>
+		<display-name>EditSaveServlet</display-name>
 		<description></description>
-		<servlet-class>com.flywithme.servlets.RevenueByCustomerServlet</servlet-class>
+		<servlet-class>com.flywithme.servlets.EditSaveServlet</servlet-class>
 	</servlet>
 	<servlet-mapping>
 		<servlet-name>AuthenticationServlet</servlet-name>
@@ -111,7 +111,7 @@
 		<url-pattern>/searchResults</url-pattern>
 	</servlet-mapping>
 	<servlet-mapping>
-		<servlet-name>RevenueByCustomerServlet</servlet-name>
-		<url-pattern>/revenue</url-pattern>
+		<servlet-name>EditSaveServlet</servlet-name>
+		<url-pattern>/saveEdit</url-pattern>
 	</servlet-mapping>
 </web-app>

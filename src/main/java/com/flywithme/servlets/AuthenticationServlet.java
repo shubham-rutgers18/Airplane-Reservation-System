@@ -25,7 +25,6 @@ public class AuthenticationServlet extends HttpServlet {
 
 		String email = request.getParameter("email");
 		String password = request.getParameter("password");
-		RequestDispatcher rd = null;
 
 		ResultSet rs;
 		try {
@@ -50,12 +49,10 @@ public class AuthenticationServlet extends HttpServlet {
 			session.setAttribute("lastName", lastName);
 			session.setAttribute("email", email);
 			if (role.equals("ADMIN")) {
-				rd = request.getRequestDispatcher("admin.jsp");
+				response.sendRedirect(request.getContextPath() + "/admin.jsp");
 			} else if (role.equals("USER")) {
-				rd = request.getRequestDispatcher("user.jsp");
+				response.sendRedirect(request.getContextPath() + "/user.jsp");
 			}
-
-			rd.forward(request, response);
 		} else {
 			request.getRequestDispatcher("index.jsp")
 					.include(request, response);
