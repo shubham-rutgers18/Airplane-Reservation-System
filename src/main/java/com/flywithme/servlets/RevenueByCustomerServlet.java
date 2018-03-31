@@ -15,9 +15,9 @@ import com.flywithme.app.AppConfig;
 
 public class RevenueByCustomerServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-	private static final String userRevenue = "select sum(revenue) as sum from "
-			+ "(select r.booking_fee as revenue from reservations join customer reservations"
-			+ " c on c.reservation_id=reservation_id join user u on u.user_id= c.user_id where u.email=?)";
+	private static final String userRevenue = "select sum(t1.revenue) as sum from "
+			+ "(select r.booking_fee as revenue from reservations r join customerreservations c on c.reservation_id=r.reservation_id "
+			+ "join user u on u.user_id= c.user_id where u.email=?)t1";
 
 	private String userDetails = "select first_name,last_name from user where email='";
 
@@ -28,6 +28,7 @@ public class RevenueByCustomerServlet extends HttpServlet {
 		PreparedStatement ps = AppConfig.getPreparedStatement(userRevenue);
 		Statement st = AppConfig.getStatement();
 		ResultSet rs;
+
 		try {
 			ps.setString(1, email);
 			rs = ps.executeQuery();

@@ -98,8 +98,7 @@
 					}
 				});
 			});
-		});
-	
+	});
 </script>
 <style>
 body {
@@ -342,13 +341,12 @@ main {
 							<div class="collapsible-body">
 								<div class="container">
 									<div class="row">
-										<form action="checkReservation">
+										<form action="reservationByUID" method="post">
 											<div class="input-field col s12">
 												<input type="text" name="reserveEmail" id="reserveEmail" />
 												<label for="reserveEmail"><b> Email</b></label>
 											</div>
-											<button class="btn waves-effect waves-teal"
-												onclick="Materialize.toast('I am a toast', 4000)">SUBMIT</button>
+											<button class="btn waves-effect waves-teal" type="submit">SUBMIT</button>
 										</form>
 									</div>
 
@@ -359,9 +357,11 @@ main {
 						<li>
 							<div class="collapsible-header">BEST CUSTOMER</div>
 							<div class="collapsible-body">
-							<form id="bestCustomerForm" action="getBestCustomer" method="post">
-									<button class="btn waves-effect waves-teal" id="bestCustomer" type="submit">SUBMIT</button>
-							</form>
+								<form id="bestCustomerForm" action="getBestCustomer"
+									method="post">
+									<button class="btn waves-effect waves-teal" id="bestCustomer"
+										type="submit">SUBMIT</button>
+								</form>
 							</div>
 						</li>
 					</ul>
@@ -428,7 +428,9 @@ main {
 						<li>
 							<div class="collapsible-header">list of flights</div>
 							<div class="collapsible-body">
-								<button class="btn waves-effect waves-teal">SUBMIT</button>
+								<form action="listFlights" method="post">
+									<button class="btn waves-effect waves-teal" type="submit">SUBMIT</button>
+								</form>
 							</div>
 						</li>
 
@@ -438,7 +440,7 @@ main {
 							<div class="collapsible-body">
 								<div class="container">
 									<div class="row">
-										<form>
+										<form action="reservationByFlight" method="post">
 											<div class="input-field col s12">
 												<input type="number" placeholder="ENTER flight id"
 													name="reservelistFlight" id="reservelistFlight" /> <label
@@ -467,7 +469,7 @@ main {
 							<div class="collapsible-body">
 								<div class="container">
 									<div class="row">
-										<form>
+										<form method="post" action="salesReportByMonth">
 											<div class="input-field col s12">
 												<input type="text"
 													placeholder="ENTER FIRST 3 CHAR MONTH(JAN,FEB,ETC)"
@@ -481,7 +483,7 @@ main {
 													id="year" /> <label for="year"><b> Year</b></label>
 											</div>
 
-											<button class="btn waves-effect waves-teal">SUBMIT</button>
+											<button class="btn waves-effect waves-teal" type="submit">SUBMIT</button>
 										</form>
 									</div>
 
@@ -495,7 +497,7 @@ main {
 							<div class="collapsible-body">
 								<div class="container">
 									<div class="row">
-										<form>
+										<form method="post" action="revenueByFlight">
 											<div class="input-field col s12">
 												<input type="number" placeholder="ENTER flight id"
 													name="revenueByFlightId" id="revenueByFlightId" /> <label
@@ -539,8 +541,9 @@ main {
 									<div class="row">
 										<form method="post" action="revenueByCustomer">
 											<div class="input-field col s12">
-												<input type="text" placeholder="ENTER EMAIL" name="revenueCustId"
-													id="revenueCustId" /> <label for="revenueCustId"><b> Email</b></label>
+												<input type="text" placeholder="ENTER EMAIL"
+													name="revenueCustId" id="revenueCustId" /> <label
+													for="revenueCustId"><b> Email</b></label>
 											</div>
 											<button class="btn waves-effect waves-teal" type="submit">SUBMIT</button>
 										</form>

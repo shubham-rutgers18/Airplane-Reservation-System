@@ -35,12 +35,6 @@
 		<servlet-class>com.flywithme.servlets.DeleteCustomerServlet</servlet-class>
 	</servlet>
 	<servlet>
-		<servlet-name>CheckCustomerReservationServlet</servlet-name>
-		<display-name>CheckCustomerReservationServlet</display-name>
-		<description></description>
-		<servlet-class>com.flywithme.servlets.CheckCustomerReservationServlet</servlet-class>
-	</servlet>
-	<servlet>
 		<servlet-name>BestCustomerServlet</servlet-name>
 		<display-name>BestCustomerServlet</display-name>
 		<description></description>
@@ -88,6 +82,30 @@
 		<description></description>
 		<servlet-class>com.flywithme.servlets.RevenueByFlightServlet</servlet-class>
 	</servlet>
+	<servlet>
+		<servlet-name>SalesReportByMonthServlet</servlet-name>
+		<display-name>SalesReportByMonthServlet</display-name>
+		<description></description>
+		<servlet-class>com.flywithme.servlets.SalesReportByMonthServlet</servlet-class>
+	</servlet>
+	<servlet>
+		<servlet-name>ReservationByFlightServlet</servlet-name>
+		<display-name>ReservationByFlightServlet</display-name>
+		<description></description>
+		<servlet-class>com.flywithme.servlets.ReservationByFlightServlet</servlet-class>
+	</servlet>
+	<servlet>
+		<servlet-name>RevenueByDestinationServlet</servlet-name>
+		<display-name>RevenueByDestinationServlet</display-name>
+		<description></description>
+		<servlet-class>com.flywithme.servlets.RevenueByDestinationServlet</servlet-class>
+	</servlet>
+	<servlet>
+		<servlet-name>ListFlightsServlet</servlet-name>
+		<display-name>ListFlightsServlet</display-name>
+		<description></description>
+		<servlet-class>com.flywithme.servlets.ListFlightsServlet</servlet-class>
+	</servlet>
 	<servlet-mapping>
 		<servlet-name>AuthenticationServlet</servlet-name>
 		<url-pattern>/getAuth</url-pattern>
@@ -107,10 +125,6 @@
 	<servlet-mapping>
 		<servlet-name>DeleteCustomerServlet</servlet-name>
 		<url-pattern>/deleteCustomer</url-pattern>
-	</servlet-mapping>
-	<servlet-mapping>
-		<servlet-name>CheckCustomerReservationServlet</servlet-name>
-		<url-pattern>/checkReservation</url-pattern>
 	</servlet-mapping>
 	<servlet-mapping>
 		<servlet-name>BestCustomerServlet</servlet-name>
@@ -143,5 +157,21 @@
 	<servlet-mapping>
 		<servlet-name>RevenueByFlightServlet</servlet-name>
 		<url-pattern>/revenueByFlight</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>SalesReportByMonthServlet</servlet-name>
+		<url-pattern>/salesReportByMonth</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>ReservationByFlightServlet</servlet-name>
+		<url-pattern>/reservationByFlight</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>RevenueByDestinationServlet</servlet-name>
+		<url-pattern>/revenueByDestination</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>ListFlightsServlet</servlet-name>
+		<url-pattern>/listFlights</url-pattern>
 	</servlet-mapping>
 </web-app>
