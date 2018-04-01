@@ -18,6 +18,8 @@
 	src=" https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.3/js/materialize.min.js"></script>
 
 <script type="text/javascript">
+	
+
 	function clearAddCustFields() {
 		$('#firstName').val("");
 		$('#lastName').val("");
@@ -48,6 +50,17 @@
 	}
 
 	$(document).ready(function() {
+		
+		$('.datepicker').pickadate({
+			selectMonths : true, // Creates a dropdown to control month
+			selectYears : 15, // Creates a dropdown of 15 years to control year,
+			today : 'Today',
+			clear : 'Clear',
+			close : 'Ok',
+			closeOnSelect : false,
+			format: 'yyyy-mm-dd'
+		});
+		
 		$('#addUser').click(function() {
 			var firstName = $('#firstName').val();
 			var lastName = $('#lastName').val();
@@ -95,10 +108,10 @@
 					var cno = Number("<%=session.getAttribute("contactNo")%>");
 					var cred = Number("<%=session.getAttribute("creditCardNo")%>");
 					setEditForm(fname,lname, add,zip, cno,cred);
-					}
-				});
-			});
-	});
+														}
+													});
+										});
+					});
 </script>
 <style>
 body {
@@ -383,18 +396,33 @@ main {
 								have seats reserved on a given flight</div>
 							<div class="collapsible-body">
 								<div class="container">
-									<div class="row">
-										<form action="listCustomers">
+
+									<form action="reservedSeatsByCustomer" method="post">
+										<div class="row">
 											<div class="input-field col s12">
-												<input type="number" placeholder="ENTER flight id"
+												<input type="text" placeholder="ENTER flight id"
 													name="custflightid" id="custflightid" /> <label
 													for="custflightid"><b> flight id</b></label>
 											</div>
-											<button class="btn waves-effect waves-teal">SUBMIT</button>
-										</form>
-									</div>
-
+										</div>
+										<div class="row">
+											<div class="input-field col s12">
+												<input type="text" placeholder="ENTER airline id"
+													name="custairlineid" id="custairlineid" /> <label
+													for="custairlineid"><b> Airline id</b></label>
+											</div>
+										</div>
+										<div class="row">
+											<label>Flight Date</label>
+											<div class="input-field col s12">
+												<input type="text" class="datepicker" name="custflightDate"
+													id="custflightDate" />
+											</div>
+										</div>
+										<button class="btn waves-effect waves-teal" type="submit">SUBMIT</button>
+									</form>
 								</div>
+
 							</div>
 						</li>
 
@@ -404,16 +432,15 @@ main {
 							<div class="collapsible-body">
 								<div class="container">
 									<div class="row">
-										<form>
+										<form action="listFlightByAirport" method="post">
 											<div class="input-field col s12">
-												<input type="number" placeholder="ENTER airport id"
-													name="airportid" id="airportid" /> <label for="airportid"><b>
-														airport id</b></label>
+												<input type="text" placeholder="ENTER airport id"
+													name="flightAirportId" id="flightAirportId" /> <label
+													for="flightAirportId"><b> airport id</b></label>
 											</div>
-											<button class="btn waves-effect waves-teal">SUBMIT</button>
+											<button class="btn waves-effect waves-teal" type="submit">SUBMIT</button>
 										</form>
 									</div>
-
 								</div>
 							</div>
 						</li>
@@ -421,7 +448,9 @@ main {
 						<li>
 							<div class="collapsible-header">On Time/Delay</div>
 							<div class="collapsible-body">
-								<button class="btn waves-effect waves-teal">SUBMIT</button>
+								<form method="post" action="flightStatus">
+									<button class="btn waves-effect waves-teal" type="submit">SUBMIT</button>
+								</form>
 							</div>
 						</li>
 
@@ -477,7 +506,6 @@ main {
 														Month</b></label>
 											</div>
 
-
 											<div class="input-field col s12">
 												<input type="number" placeholder="ENTER year" name="year"
 													id="year" /> <label for="year"><b> Year</b></label>
@@ -499,12 +527,16 @@ main {
 									<div class="row">
 										<form method="post" action="revenueByFlight">
 											<div class="input-field col s12">
-												<input type="number" placeholder="ENTER flight id"
+												<input type="text" placeholder="ENTER flight id"
 													name="revenueByFlightId" id="revenueByFlightId" /> <label
 													for="revenueByFlightId"><b> Flight id</b></label>
 											</div>
-
-											<button class="btn waves-effect waves-teal">SUBMIT</button>
+											<div class="input-field col s12">
+												<input type="text" placeholder="ENTER airline id"
+													name="revenueByAirlineId" id="revenueByAirlineId" /> <label
+													for="revenueByAirlineId"><b> Airline id</b></label>
+											</div>
+											<button class="btn waves-effect waves-teal" type="submit">SUBMIT</button>
 										</form>
 									</div>
 

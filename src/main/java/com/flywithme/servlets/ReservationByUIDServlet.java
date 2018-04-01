@@ -32,17 +32,17 @@ public class ReservationByUIDServlet extends HttpServlet {
 		response.setContentType("text/html");
 		PrintWriter out = response.getWriter();
 		out.println("<html>");
-		out.println("<head><meta name=\"viewport\" content=\"width = device-width, initial-scale = 1\">\r\n" + 
-				"<link rel=\"stylesheet\"\r\n" + 
-				"	href=\"https://fonts.googleapis.com/icon?family=Material+Icons\">\r\n" + 
-				"<link rel=\"stylesheet\"\r\n" + 
-				"	href=\"https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.3/css/materialize.min.css\">\r\n" + 
-				"<script type=\"text/javascript\"\r\n" + 
-				"	src=\"https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js\"></script>\r\n" + 
-				"<script type=\"text/javascript\"\r\n" + 
-				"	src=\" https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.3/js/materialize.min.js\"></script></head>");
+		out.println("<head><meta name=\"viewport\" content=\"width = device-width, initial-scale = 1\">\r\n"
+				+ "<link rel=\"stylesheet\"\r\n"
+				+ "	href=\"https://fonts.googleapis.com/icon?family=Material+Icons\">\r\n"
+				+ "<link rel=\"stylesheet\"\r\n"
+				+ "	href=\"https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.3/css/materialize.min.css\">\r\n"
+				+ "<script type=\"text/javascript\"\r\n"
+				+ "	src=\"https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js\"></script>\r\n"
+				+ "<script type=\"text/javascript\"\r\n"
+				+ "	src=\" https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.3/js/materialize.min.js\"></script></head>");
 		out.println("<body>");
-		out.println("<table><thead><tr><td>Airline</td><td>Flight</td><td>FlightLeg</td>"
+		out.println("<table class=\"striped\"><thead><tr><td>Airline</td><td>Flight</td><td>FlightLeg</td>"
 				+ "<td>Origin</td><td>Dep. time</td><td>Destination</td><td>Arrival time</td><td>Reservation Time</td></tr></thead><tbody>");
 		ResultSet rs = null;
 		try {

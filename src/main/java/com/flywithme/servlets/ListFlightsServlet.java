@@ -39,7 +39,7 @@ public class ListFlightsServlet extends HttpServlet {
 				+ "<script type=\"text/javascript\"\r\n"
 				+ "	src=\" https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.3/js/materialize.min.js\"></script></head>");
 		out.println("<body>");
-		out.println("<table><thead><tr><td>Airline</td><td>Flight</td><td>FlightLeg</td>"
+		out.println("<table class=\"striped\"><thead><tr><td>Airline</td><td>Flight</td><td>FlightLeg</td>"
 				+ "<td>Origin</td><td>Dep. time</td><td>Destination</td><td>Arrival time</td><td>No of seats</td>"
 				+ "<td>Fare</td><td>Working Day</td></tr></thead><tbody>");
 		ResultSet rs = null;

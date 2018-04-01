@@ -106,6 +106,24 @@
 		<description></description>
 		<servlet-class>com.flywithme.servlets.ListFlightsServlet</servlet-class>
 	</servlet>
+	<servlet>
+		<servlet-name>ListFlightByAirport</servlet-name>
+		<display-name>ListFlightByAirport</display-name>
+		<description></description>
+		<servlet-class>com.flywithme.servlets.ListFlightByAirport</servlet-class>
+	</servlet>
+	<servlet>
+		<servlet-name>ReservedSeatsByCustomerServlet</servlet-name>
+		<display-name>ReservedSeatsByCustomerServlet</display-name>
+		<description></description>
+		<servlet-class>com.flywithme.servlets.ReservedSeatsByCustomerServlet</servlet-class>
+	</servlet>
+	<servlet>
+		<servlet-name>FlightStatusServlet</servlet-name>
+		<display-name>FlightStatusServlet</display-name>
+		<description></description>
+		<servlet-class>com.flywithme.servlets.FlightStatusServlet</servlet-class>
+	</servlet>
 	<servlet-mapping>
 		<servlet-name>AuthenticationServlet</servlet-name>
 		<url-pattern>/getAuth</url-pattern>
@@ -173,5 +191,17 @@
 	<servlet-mapping>
 		<servlet-name>ListFlightsServlet</servlet-name>
 		<url-pattern>/listFlights</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>ListFlightByAirport</servlet-name>
+		<url-pattern>/listFlightByAirport</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>ReservedSeatsByCustomerServlet</servlet-name>
+		<url-pattern>/reservedSeatsByCustomer</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>FlightStatusServlet</servlet-name>
+		<url-pattern>/flightStatus</url-pattern>
 	</servlet-mapping>
 </web-app>
