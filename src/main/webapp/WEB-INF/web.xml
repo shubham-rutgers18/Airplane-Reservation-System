@@ -172,6 +172,18 @@
 		<description></description>
 		<servlet-class>com.flywithme.servlets.BookOrderServlet</servlet-class>
 	</servlet>
+	<servlet>
+		<servlet-name>EditAccountInformation</servlet-name>
+		<display-name>EditAccountInformation</display-name>
+		<description></description>
+		<servlet-class>com.flywithme.servlets.EditAccountInformation</servlet-class>
+	</servlet>
+	<servlet>
+		<servlet-name>EditAccountInfoSave</servlet-name>
+		<display-name>EditAccountInfoSave</display-name>
+		<description></description>
+		<servlet-class>com.flywithme.servlets.EditAccountInfoSave</servlet-class>
+	</servlet>
 	<servlet-mapping>
 		<servlet-name>AuthenticationServlet</servlet-name>
 		<url-pattern>/getAuth</url-pattern>
@@ -283,5 +295,13 @@
 	<servlet-mapping>
 		<servlet-name>BookOrderServlet</servlet-name>
 		<url-pattern>/bookOrder</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>EditAccountInformation</servlet-name>
+		<url-pattern>/editAccountInformation</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>EditAccountInfoSave</servlet-name>
+		<url-pattern>/editAccountInfoSave</url-pattern>
 	</servlet-mapping>
 </web-app>
