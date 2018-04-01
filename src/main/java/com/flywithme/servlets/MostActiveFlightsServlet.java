@@ -7,6 +7,7 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 
 import javax.servlet.ServletException;
@@ -15,7 +16,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.flywithme.app.AppConfig;
-import com.flywithme.models.MostActiveComparator;
 import com.flywithme.models.MostActiveModel;
 
 public class MostActiveFlightsServlet extends HttpServlet {
@@ -52,7 +52,12 @@ public class MostActiveFlightsServlet extends HttpServlet {
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
-		Collections.sort(activeFlights, new MostActiveComparator());
+		Collections.sort(activeFlights, new Comparator<MostActiveModel>() {
+
+			public int compare(MostActiveModel o1, MostActiveModel o2) {
+				return Integer.compare(o1.getWorkingDays(), o2.getWorkingDays());
+			}
+		});
 		Collections.reverse(activeFlights);
 
 		response.setContentType("text/html");
