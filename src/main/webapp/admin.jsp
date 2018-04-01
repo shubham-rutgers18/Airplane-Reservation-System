@@ -387,7 +387,9 @@ main {
 						<li>
 							<div class="collapsible-header">Most Active FLights</div>
 							<div class="collapsible-body">
-								<button class="btn waves-effect waves-teal">SUBMIT</button>
+								<form action="mostActiveFlights" method="post">
+									<button class="btn waves-effect waves-teal">SUBMIT</button>
+								</form>
 							</div>
 						</li>
 
@@ -471,12 +473,30 @@ main {
 									<div class="row">
 										<form action="reservationByFlight" method="post">
 											<div class="input-field col s12">
-												<input type="number" placeholder="ENTER flight id"
+												<input type="text" placeholder="ENTER flight id"
 													name="reservelistFlight" id="reservelistFlight" /> <label
 													for="reservelistFlight"><b> Flight id</b></label>
 											</div>
-
-											<button class="btn waves-effect waves-teal">SUBMIT</button>
+											<div class="input-field col s12">
+												<input type="text" placeholder="ENTER airline id"
+													name="reservelistAirline" id="reservelistAirline" /> <label
+													for="reservelistAirline"><b> Airline id</b></label>
+											</div>
+											<div class="row">
+												<label>From Date</label>
+												<div class="input-field col s12">
+													<input type="text" class="datepicker" name="fromReserveDate"
+														id="fromReserveDate" />
+												</div>
+											</div>
+											<div class="row">
+												<label>To Date</label>
+												<div class="input-field col s12">
+													<input type="text" class="datepicker" name="toReserveDate"
+														id="toReserveDate" />
+												</div>
+											</div>
+											<button class="btn waves-effect waves-teal" type="submit">SUBMIT</button>
 										</form>
 									</div>
 
@@ -550,13 +570,12 @@ main {
 							<div class="collapsible-body">
 								<div class="container">
 									<div class="row">
-										<form>
+										<form method="post" action="revenueByDestination">
 											<div class="input-field col s12">
 												<input type="text" placeholder="ENTER destination city"
 													name="city" id="city" /> <label for="city"><b>
 														Destination City</b></label>
 											</div>
-
 											<button class="btn waves-effect waves-teal">SUBMIT</button>
 										</form>
 									</div>
@@ -580,9 +599,7 @@ main {
 											<button class="btn waves-effect waves-teal" type="submit">SUBMIT</button>
 										</form>
 									</div>
-
 								</div>
-
 							</div>
 						</li>
 					</ul>

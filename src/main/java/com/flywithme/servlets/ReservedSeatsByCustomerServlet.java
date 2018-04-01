@@ -65,6 +65,8 @@ public class ReservedSeatsByCustomerServlet extends HttpServlet {
 				String nos = rs.getString("seats_reserved");
 				out.println("<tr><td>" + fn + "</td><td>" + ln + "</td><td>" + nos + "</td></tr>");
 			}
+			rs.close();
+			ps.close();
 			out.println("</tbody></table><br><br>");
 		} catch (SQLException e) {
 			e.printStackTrace();

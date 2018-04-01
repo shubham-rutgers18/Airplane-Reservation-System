@@ -1,9 +1,9 @@
 package com.flywithme.servlets;
 
 import java.io.IOException;
-import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -17,21 +17,26 @@ public class RevenueByDestinationServlet extends HttpServlet {
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		String city = request.getParameter("city");
-		String revenue = null;
-		PreparedStatement ps = AppConfig.getPreparedStatement(null);
 
-		ResultSet Drevenue;
+		String city = request.getParameter("city");
+
+		String sql = "select sum(r.booking_fee) as revenue from reservations r "
+				+ "join flightleg f on f.airline_id=r.airline_id and f.flight_id=r.flight_id and f.flightleg_id=r.flightleg_id "
+				+ "join airport a2 on a2.airport_id=f.destination_airport_id " + "where a2.city='" + city + "'";
+
+		Statement st = AppConfig.getStatement();
+
+		String revenue = null;
 		try {
-			ps.setString(1, city);
-			Drevenue = ps.executeQuery();
-			while (Drevenue.next()) {
-				revenue = Drevenue.getString("");
+			ResultSet rs = st.executeQuery(sql);
+			while (rs.next()) {
+				revenue = rs.getString("revenue");
 			}
-			request.setAttribute("revenue", revenue);
+			request.getSession().setAttribute("result", "The revenue for city "+city+" is "+revenue);
 		} catch (SQLException e) {
-			// todo
+			e.printStackTrace();
 		}
+		request.getRequestDispatcher("result.jsp").forward(request, response);
 	}
 
 }
