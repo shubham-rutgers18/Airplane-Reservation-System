@@ -130,6 +130,48 @@
 		<description></description>
 		<servlet-class>com.flywithme.servlets.MostActiveFlightsServlet</servlet-class>
 	</servlet>
+	<servlet>
+		<servlet-name>AccountInformation</servlet-name>
+		<display-name>AccountInformation</display-name>
+		<description></description>
+		<servlet-class>com.flywithme.servlets.AccountInformation</servlet-class>
+	</servlet>
+	<servlet>
+		<servlet-name>CurrentResrvations</servlet-name>
+		<display-name>CurrentResrvations</display-name>
+		<description></description>
+		<servlet-class>com.flywithme.servlets.CurrentResrvations</servlet-class>
+	</servlet>
+	<servlet>
+		<servlet-name>AllReservations</servlet-name>
+		<display-name>AllReservations</display-name>
+		<description></description>
+		<servlet-class>com.flywithme.servlets.AllReservations</servlet-class>
+	</servlet>
+	<servlet>
+		<servlet-name>ShowSchedule</servlet-name>
+		<display-name>ShowSchedule</display-name>
+		<description></description>
+		<servlet-class>com.flywithme.servlets.ShowSchedule</servlet-class>
+	</servlet>
+	<servlet>
+		<servlet-name>BestSellerFlight</servlet-name>
+		<display-name>BestSellerFlight</display-name>
+		<description></description>
+		<servlet-class>com.flywithme.servlets.BestSellerFlight</servlet-class>
+	</servlet>
+	<servlet>
+		<servlet-name>AddPassengerServlet</servlet-name>
+		<display-name>AddPassengerServlet</display-name>
+		<description></description>
+		<servlet-class>com.flywithme.servlets.AddPassengerServlet</servlet-class>
+	</servlet>
+	<servlet>
+		<servlet-name>BookOrderServlet</servlet-name>
+		<display-name>BookOrderServlet</display-name>
+		<description></description>
+		<servlet-class>com.flywithme.servlets.BookOrderServlet</servlet-class>
+	</servlet>
 	<servlet-mapping>
 		<servlet-name>AuthenticationServlet</servlet-name>
 		<url-pattern>/getAuth</url-pattern>
@@ -213,5 +255,33 @@
 	<servlet-mapping>
 		<servlet-name>MostActiveFlightsServlet</servlet-name>
 		<url-pattern>/mostActiveFlights</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>BestSellerFlight</servlet-name>
+		<url-pattern>/bestSellerFlight</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>ShowSchedule</servlet-name>
+		<url-pattern>/showSchedule</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>AllReservations</servlet-name>
+		<url-pattern>/allReservations</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>CurrentResrvations</servlet-name>
+		<url-pattern>/currentReservations</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>AccountInformation</servlet-name>
+		<url-pattern>/accountInfo</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>AddPassengerServlet</servlet-name>
+		<url-pattern>/addPassenger</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>BookOrderServlet</servlet-name>
+		<url-pattern>/bookOrder</url-pattern>
 	</servlet-mapping>
 </web-app>
