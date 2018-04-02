@@ -72,7 +72,8 @@ public class EditAccountInfoSave extends HttpServlet {
 			ps.executeUpdate();
 			ps.close();
 			
-
+			request.setAttribute("firstName", firstName);
+			request.setAttribute("lastName", lastName);
 //			PrintWriter out = response.getWriter();
 //			out.println("Details of User " + firstName + " updated");
 
