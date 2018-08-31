@@ -51,7 +51,7 @@ public class SearchFlightsServlet extends HttpServlet {
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-
+		
 		String origin = request.getParameter("origin");
 		String dest = request.getParameter("dest");
 		String oneway = request.getParameter("oneway");
@@ -59,7 +59,7 @@ public class SearchFlightsServlet extends HttpServlet {
 		String departDate = request.getParameter("depDate");
 		String returnDate = request.getParameter("returnDate");
 		String nos = request.getParameter("nos");
-
+		
 		if (nos == null)
 			nos = "1";
 

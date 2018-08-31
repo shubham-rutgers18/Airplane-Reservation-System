@@ -76,10 +76,10 @@
 	});
 
 	function myFunction() {
-		document.getElementById("demo").disabled = false;
+		document.getElementById("returnDate").disabled = false;
 	}
 	function myFunction2() {
-		document.getElementById("demo").disabled = true;
+		document.getElementById("returnDate").disabled = true;
 	}
 </script>
 </head>

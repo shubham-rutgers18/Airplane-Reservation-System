@@ -86,6 +86,10 @@ public class AddCustomerServlet extends HttpServlet {
 		response.setContentType("text/plain");
 		PrintWriter out = response.getWriter();
 		out.println("User " + firstName + " added");
+		
+		if(request.getAttribute("roundway").equals("roundway")) {
+			System.out.println("hehe");
+		}
 
 	}
 

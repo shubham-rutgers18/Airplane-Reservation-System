@@ -108,10 +108,10 @@
 					var cno = Number("<%=session.getAttribute("contactNo")%>");
 					var cred = Number("<%=session.getAttribute("creditCardNo")%>");
 					setEditForm(fname,lname, add,zip, cno,cred);
-														}
-													});
-										});
-					});
+				}
+			});
+		});
+});
 </script>
 <style>
 body {

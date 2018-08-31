@@ -91,7 +91,6 @@ public class AddPassengerServlet extends HttpServlet {
 		} catch (SQLException e) {
 
 		}
-
 		response.sendRedirect("user.jsp");
 	}
 
